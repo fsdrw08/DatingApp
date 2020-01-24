@@ -1,5 +1,8 @@
 {
 	"name": ".NET Core Sample",
+	//"dockerComposeFile": "docker-compose.yml",
+	"service": "web",
+	//"workspaceFolder": "/workspace/DatingApp.API",
 	"dockerFile": "Dockerfile",
 
 	// Use 'appPort' to create a container with published ports. If the port isn't working, be sure
@@ -29,7 +32,7 @@
 	],
 	"remoteEnv": {
 		//Override the default HTTP endpoints - need to listen to '*' for appPort to work
-		"ASPNETCORE_Kestrel__Endpoints__Http__Url": "http://*:5000"
+		"ASPNETCORE_Kestrel__Endpoints__Http__Url": "http://localhost:5000"
 
 		// "ASPNETCORE_Kestrel__Endpoints__Https__Url": "https://*:5001",
 		// "ASPNETCORE_Kestrel__Certificates__Default__Password": "SecurePwdGoesHere",
