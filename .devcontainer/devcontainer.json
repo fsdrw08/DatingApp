@@ -1,22 +1,19 @@
 {
-	"name": ".NET Core Sample",
-	//"dockerComposeFile": "docker-compose.yml",
-	"service": "web",
-	//"workspaceFolder": "/workspace/DatingApp.API",
+	"name": "C# (.NET Core 3.1)",
 	"dockerFile": "Dockerfile",
 
-	// Use 'appPort' to create a container with published ports. If the port isn't working, be sure
-	// your server accepts connections from all interfaces (0.0.0.0 or '*'), not just localhost.
-	"appPort": [5000, 5001],
-
-	// Use 'settings' to set *default* container specific settings.json values on container create. 
-	// You can edit these settings after create using File > Preferences > Settings > Remote.
+	// Set *default* container specific settings.json values on container create.
 	"settings": { 
 		"terminal.integrated.shell.linux": "/bin/bash"
 	},
 
-	// Uncomment the next line to run commands after the container is created.
-	// "postCreateCommand": "dotnet restore",
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"ms-vscode.csharp"
+	],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [5000, 5001],
 
 	// [Optional] To reuse of your local HTTPS dev cert, first export it locally using this command: 
 	//  * Windows PowerShell:
@@ -31,19 +28,13 @@
 		// "source=${env:HOME}${env:USERPROFILE}/.aspnet/https,target=/home/vscode/.aspnet/https,type=bind"
 	],
 	"remoteEnv": {
-		//Override the default HTTP endpoints - need to listen to '*' for appPort to work
-		"ASPNETCORE_Kestrel__Endpoints__Http__Url": "http://localhost:5000"
-
-		// "ASPNETCORE_Kestrel__Endpoints__Https__Url": "https://*:5001",
 		// "ASPNETCORE_Kestrel__Certificates__Default__Password": "SecurePwdGoesHere",
-		// "ASPNETCORE_Kestrel__Certificates__Default__Path": "/home/vscode/.aspnet/https/aspnetapp.pfx"
-	},
+		// "ASPNETCORE_Kestrel__Certificates__Default__Path": "/home/vscode/.aspnet/https/aspnetapp.pfx",
+	}
 
-	// Comment out the next line to run as root
-	"remoteUser": "vscode",	
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "dotnet restore",
 
-	// Add the IDs of extensions you want installed when the container is created in the array below.
-	"extensions": [
-		"ms-vscode.csharp"
-	]
+	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+	// "remoteUser": "vscode"
 }
