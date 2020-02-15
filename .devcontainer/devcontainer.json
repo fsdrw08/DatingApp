@@ -9,15 +9,14 @@
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
-		"ms-vscode.csharp"
+		"ms-vscode.csharp",
+		"kreativ-software.csharpextensions",
+		"ms-vscode.vscode-typescript-tslint-plugin",
+		"johnpapa.angular2"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-<<<<<<< HEAD
 	"forwardPorts": [4200, 5000, 5001],
-=======
-	"forwardPorts": [4200,5000, 5001],
->>>>>>> db97c06ccb39df68b92e15744747bce55513a9fd
 
 	// [Optional] To reuse of your local HTTPS dev cert, first export it locally using this command: 
 	//  * Windows PowerShell:
