@@ -8,18 +8,9 @@
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
-            "program": "${workspaceFolder}/DatingApp.API/bin/Debug/netcoreapp3.1/DatingApp.API.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/DatingApp.API",
-            "console": "internalConsole",
-            "stopAtEntry": false,
-            "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
-            },
-            "sourceFileMap": {
-                "/Views": "${workspaceFolder}/Views"
-            }
+            "program": "dotnet",
+            "args": ["run"],
+            "cwd": "${workspaceFolder}/test-project",
         }
     ]
 }

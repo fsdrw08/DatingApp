@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/aspnetapp.csproj"
+                "${workspaceFolder}/test-project/aspnetapp.csproj"
             ],
             "problemMatcher": "$tsc"
         },
@@ -17,7 +17,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/aspnetapp.csproj"
+                "${workspaceFolder}/test-project/aspnetapp.csproj"
             ],
             "problemMatcher": "$tsc"
         },
@@ -28,7 +28,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/aspnetapp.csproj"
+                "${workspaceFolder}/test-project/aspnetapp.csproj"
             ],
             "problemMatcher": "$tsc"
         }
