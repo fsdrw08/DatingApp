@@ -13,11 +13,13 @@ export class ErrorInterceptor implements HttpInterceptor {
                     if (error.status === 401) {
                         return throwError(error.statusText);
                     }
+
                     const applicationError = error.headers.get('Application-Error');
                     if (applicationError) {
-                        // console.error(applicationError);
+                        console.error(applicationError);
                         return throwError(applicationError);
                     }
+
                     const serverError = error.error;
                     let modalStateErrors =  '';
                     if (serverError.errors && typeof serverError.errors === 'object') {
