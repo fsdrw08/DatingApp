@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { AlertifyService } from '../_services/alertify.service';
 import { AuthService } from '../_services/auth.service';
 
 @Component({
@@ -8,31 +10,37 @@ import { AuthService } from '../_services/auth.service';
 })
 export class NavComponent implements OnInit {
   model: any = {};
+  jwtHelper = new JwtHelperService();
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService, private alertifyService: AlertifyService) { }
 
   ngOnInit() {
+    // different with original tutorial
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.authService.decodedToken = this.jwtHelper.decodeToken(token);
+    }
   }
 
   login() {
     this.authService.loggin(this.model).subscribe(
       next => {
-        console.log('login successful');
+        this.alertifyService.success('logged in success');
       },
       error => {
-        console.log(error);
+        this.alertifyService.error(error);
+        ;
       }
 
     );
   }
 
   loggedIn() {
-    const token = localStorage.getItem('token');
-    return !!token;
+    return this.authService.loggedIn();
   }
 
   logout() {
     localStorage.removeItem('token');
-    return console.log('logged out');
+    this.alertifyService.message('logged out');
   }
 }
