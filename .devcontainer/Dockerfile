@@ -4,6 +4,8 @@
 ARG VARIANT="3.1"
 FROM mcr.microsoft.com/vscode/devcontainers/dotnetcore:0-${VARIANT}
 ADD sources.list /etc/apt/
+ENV PATH $PATH:/root/.dotnet/tools
+RUN dotnet tool install -g dotnet-ef
 
 # [Option] Install Node.js
 ARG INSTALL_NODE="true"
