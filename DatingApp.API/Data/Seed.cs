@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using DatingApp.API.DatingApp;
 using DatingApp.API.Models;
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 
 namespace DatingApp.API.Data
 {
@@ -18,9 +18,8 @@ namespace DatingApp.API.Data
         public void SeedUsers()
         {
             var userData = System.IO.File.ReadAllText("Data/UserSeedData.json");
-            var users = JsonConvert.DeserializeObject<List<User>>(userData);
-            //var users = JsonConverter<List<User>>.read(userData);
-            //.Deserialize<List<User>>(userData);
+            //var users = JsonConvert.DeserializeObject<List<User>>(userData);
+            var users = JsonSerializer.Deserialize<List<User>>(userData, default);
             foreach (var user in users)
             {
                 byte[] passwordHash, passwordSalt;

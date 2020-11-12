@@ -1,3 +1,10 @@
+dotnet ef database drop
+dotnet ef migrations remove
+...
+dotnet ef migrations list
+dotnet ef migrations add ***
+dotnet ef database update
+
 # Try Out Development Containers: .NET Core
 
 This is a sample project that lets you try out the **[VS Code Remote - Containers](https://aka.ms/vscode-remote/containers)** extension in a few easy steps.
