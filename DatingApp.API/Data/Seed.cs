@@ -19,7 +19,12 @@ namespace DatingApp.API.Data
         {
             var userData = System.IO.File.ReadAllText("Data/UserSeedData.json");
             //var users = JsonConvert.DeserializeObject<List<User>>(userData);
-            var users = JsonSerializer.Deserialize<List<User>>(userData, default);
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+            };
+            var users = JsonSerializer.Deserialize<List<User>>(userData, options);
+            
             foreach (var user in users)
             {
                 byte[] passwordHash, passwordSalt;
