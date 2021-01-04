@@ -12,7 +12,8 @@
 		"ms-dotnettools.csharp",
 		"kreativ-software.csharpextensions",
 		"ms-vscode.vscode-typescript-tslint-plugin",
-		"johnpapa.angular2"
+		"johnpapa.angular2",
+		"angular.ng-template"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
