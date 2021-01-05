@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { RouterModule } from '@angular/router';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
 import { UserService } from './_services/user.service';
+import { MemberCardComponent } from './members/member-card/member-card.component';
+import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 
 
 @NgModule({
@@ -30,7 +33,9 @@ import { UserService } from './_services/user.service';
     RegisterComponent,
     MemberListComponent,
     ListsComponent,
-    MessagesComponent
+    MessagesComponent,
+    MemberCardComponent,
+    MemberDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +44,16 @@ import { UserService } from './_services/user.service';
     FormsModule,
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('token');
+        },
+        allowedDomains: ['localhost:5000'],
+        disallowedRoutes: ['localhost:5000/api/auth']
+      }
+    }),
   ],
   providers: [
     AuthService,
