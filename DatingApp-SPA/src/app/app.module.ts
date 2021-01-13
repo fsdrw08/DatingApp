@@ -24,7 +24,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { UserService } from './_services/user.service';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
-
+import { NgxGalleryModule } from 'ngx-gallery-9';
 
 @NgModule({
   declarations: [
@@ -47,6 +47,7 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     RouterModule.forRoot(appRoutes),
+    NgxGalleryModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {
