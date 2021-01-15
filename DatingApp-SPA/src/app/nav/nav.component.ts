@@ -9,20 +9,12 @@ import { AuthService } from '../_services/auth.service';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent implements OnInit {
+export class NavComponent {
   model: any = {};
   jwtHelper = new JwtHelperService();
 
   constructor(public authService: AuthService, private alertifyService: AlertifyService,
     private router: Router) { }
-
-  ngOnInit() {
-    // different with original tutorial
-    const token = localStorage.getItem('token');
-    if (token) {
-      this.authService.decodedToken = this.jwtHelper.decodeToken(token);
-    }
-  }
 
   login() {
     this.authService.loggin(this.model).subscribe(
