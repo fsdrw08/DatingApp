@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/_models/user';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-member-edit',
@@ -8,16 +10,22 @@ import { User } from 'src/app/_models/user';
   styleUrls: ['./member-edit.component.css']
 })
 export class MemberEditComponent implements OnInit {
+  @ViewChild('editForm',{ static: true }) editForm: NgForm;
   user: User;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private alertify: AlertifyService) { }
 
   ngOnInit(): void {
     this.route.data.subscribe(data => {
       // tslint:disable-next-line: no-string-literal
       this.user = data['user'];
-    console.log(this.user);
     })
+    console.log(this.user);
   }
 
+  updateUser() {
+    console.log(this.user);
+    this.alertify.success('Profile updated');
+    this.editForm.reset(this.user);
+  }
 }

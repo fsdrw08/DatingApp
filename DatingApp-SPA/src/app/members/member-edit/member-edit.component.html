@@ -1,6 +1,13 @@
 <div class="container mt-4">
     <div class="row">
-        <h3>Your Profile</h3>
+        <div class="col-sm-4">
+            <h3>Your Profile</h3>
+        </div>
+        <div class="col-sm-8">
+            <div *ngIf="editForm.dirty" class="alert alert-info">
+                <strong>Information: </strong>You made change, watch out
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-sm-4">
@@ -25,10 +32,8 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="btn-group d-flex">
-                        <button class="btn btn-primary w-100">Like</button>
-                        <button class="btn btn-success w-100">Message</button>
-                    </div>
+                    <button  form="editForm" class="btn btn-success btn-block">Save</button>
+                    <!--[disabled]="!editForm.dirty"-->
                 </div>
             </div>
         </div>
@@ -37,16 +42,17 @@
             <div class="tab-panel">
                 <tabset class="member-tabset">
                     <tab heading="Edit Profile">
-                        <form>
+                        <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser();">
                             <h4>Description</h4>
                             <textarea name="introduction" rows="6" class="form-control"
                               [(ngModel)]="user.introduction"></textarea>
                             <h4>Looking For</h4>
-                            <textarea name="looking for" rows="6" class="form-control"
+                            <textarea name="lookingFor" rows="6" class="form-control"
                               [(ngModel)]="user.lookingFor"></textarea>
                             <h4>Interests</h4>
-                            <textarea name="Interests" rows="6" class="form-control"
+                            <textarea name="interests" rows="6" class="form-control"
                               [(ngModel)]="user.interests"></textarea>
+                            <h4>Location Details:</h4>
                             <div class="form-inline">
                                 <label for="city">City</label>
                                 <input class="form-control" type="text" name="city" [(ngModel)]="user.city">
