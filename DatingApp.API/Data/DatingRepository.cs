@@ -14,6 +14,8 @@ namespace DatingApp.API.Data
             _context = context;
 
         }
+        
+        // add and remove method just modify data in memory, so no need async method
         public void Add<T>(T entity) where T : class
         {
             _context.Add(entity);
@@ -26,6 +28,7 @@ namespace DatingApp.API.Data
 
         public async Task<User> GetUser(int id)
         {
+            //include photos to return as well
             var user = await _context.Users.Include(p => p.Photos).FirstOrDefaultAsync(u => u.Id ==id);
 
             return user;
