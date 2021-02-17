@@ -3,6 +3,10 @@
 dotnet user-secrets init
 
 dotnet user-secrets set &lt;ObjejctName&gt;:&lt;PropertryName&gt; &lt;Value&gt;
+e.g.
+dotnet user-secrets set CloudinarySettings:CloudNname xxx
+dotnet user-secrets set CloudinarySettings:ApiKey xxx
+dotnet user-secrets set CloudinarySettings:ApiSecret xxx
 
 # dotnet ef useage
 dotnet ef database drop
