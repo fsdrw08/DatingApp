@@ -1,3 +1,10 @@
+# dotnet user-secrets useage
+//only for first time
+dotnet user-secrets init
+
+dotnet user-secrets set &lt;ObjejctName&gt;:&lt;PropertryName&gt; &lt;Value&gt;
+
+# dotnet ef useage
 dotnet ef database drop
 dotnet ef migrations remove
 ...
