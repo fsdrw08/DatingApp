@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "dotnet",
             "args": ["run"],
-            "cwd": "${workspaceFolder}/test-project",
+            "cwd": "${workspaceFolder}/DatingApp.API",
         }
     ]
 }

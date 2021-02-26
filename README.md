@@ -2,11 +2,19 @@
 //only for first time
 dotnet user-secrets init
 
+code ~/.microsoft/usersecrets/c6f00fd7-9944-4728-8f78-6abab0f28c81/secrets.json
+"CloudinarySettings": {
+    "CloudName": "CloudName",
+    "ApiKey": "ApiKey",
+    "ApiSecret": "ApiSecret"
+  }
+
 dotnet user-secrets set &lt;ObjejctName&gt;:&lt;PropertryName&gt; &lt;Value&gt;
-e.g.
+↓ wrong e.g.
 dotnet user-secrets set CloudinarySettings:CloudNname xxx
 dotnet user-secrets set CloudinarySettings:ApiKey xxx
 dotnet user-secrets set CloudinarySettings:ApiSecret xxx
+↑ wrong
 
 # dotnet ef useage
 dotnet ef database drop
