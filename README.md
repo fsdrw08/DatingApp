@@ -7,7 +7,7 @@ code ~/.microsoft/usersecrets/c6f00fd7-9944-4728-8f78-6abab0f28c81/secrets.json
     "CloudName": "CloudName",
     "ApiKey": "ApiKey",
     "ApiSecret": "ApiSecret"
-  }
+}
 
 dotnet user-secrets set &lt;ObjejctName&gt;:&lt;PropertryName&gt; &lt;Value&gt;
 ↓ wrong e.g.

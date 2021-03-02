@@ -8,8 +8,10 @@
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
-            "program": "dotnet",
-            "args": ["run"],
+            "program": "${workspaceFolder}/DatingApp.API/bin/Debug/netcoreapp3.1/DatingApp.API.dll",
+            "args": [],
+            //"program": "dotnet",${workspaceFolder}/DatingApp/DatingApp.API/bin/Debug/netcoreapp3.1/DatingApp.API.dll
+            //"args": ["run"],
             "cwd": "${workspaceFolder}/DatingApp.API",
         }
     ]

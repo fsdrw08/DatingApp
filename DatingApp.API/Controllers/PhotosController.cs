@@ -32,7 +32,7 @@ namespace DatingApp.API.Controllers
             _repo = repo;
 
             Account acc = new Account(
-                _cloudinaryConfig.Value.CloudNname,
+                _cloudinaryConfig.Value.CloudName,
                 _cloudinaryConfig.Value.ApiKey,
                 _cloudinaryConfig.Value.ApiSecret
             );
