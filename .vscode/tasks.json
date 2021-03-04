@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/test-project/aspnetapp.csproj"
+                "${workspaceFolder}/DatingApp.API/DatingApp.API.csproj"
             ],
             "problemMatcher": "$tsc"
         },
@@ -17,7 +17,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/test-project/aspnetapp.csproj"
+                "${workspaceFolder}/DatingApp.API/DatingApp.API.csproj"
             ],
             "problemMatcher": "$tsc"
         },
@@ -28,9 +28,11 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/test-project/aspnetapp.csproj"
+                "${workspaceFolder}/DatingApp.API/DatingApp.API.csproj"
             ],
-            "problemMatcher": "$tsc"
+            "problemMatcher": "$tsc",
+            //https://www.benday.com/2020/12/24/configure-vscode-debugging-to-use-asp-net-core-mvc-watch-auto-recompile-of-c-classes-and-cshtml-views/
+            "options": {"cwd": "${workspaceFolder}/DatingApp.API/"}
         }
     ]
 }

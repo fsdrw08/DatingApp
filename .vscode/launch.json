@@ -8,11 +8,33 @@
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
+            "preLaunchTask": "watch",
             "program": "${workspaceFolder}/DatingApp.API/bin/Debug/netcoreapp3.1/DatingApp.API.dll",
             "args": [],
-            //"program": "dotnet",${workspaceFolder}/DatingApp/DatingApp.API/bin/Debug/netcoreapp3.1/DatingApp.API.dll
-            //"args": ["run"],
             "cwd": "${workspaceFolder}/DatingApp.API",
-        }
+            "stopAtEntry": false,
+            //"serverReadyAction": {
+            //    "action": "openExternally",
+            //    "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            //},
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            //"sourceFileMap": {
+            //    "/Views": "${workspaceFolder}/Views"
+            //}
+        },
+        //{
+        //    "name": ".NET Core Launch (web)",
+        //    "type": "coreclr",
+        //    "request": "launch",
+        //    "preLaunchTask": "build",
+        //    "program": "${workspaceFolder}/DatingApp.API/bin/Debug/netcoreapp3.1/DatingApp.API.dll",
+        //    "args": [],
+        //    //"program": "dotnet",${workspaceFolder}/DatingApp/DatingApp.API/bin/Debug/netcoreapp3.1/DatingApp.API.dll
+        //    //"args": ["run"],
+        //    "cwd": "${workspaceFolder}/DatingApp.API",
+        //    "requireExactSource":false
+        //}
     ]
 }
