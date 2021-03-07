@@ -24,7 +24,7 @@ export class MemberDetailComponent implements OnInit {
   ngOnInit(): void {
     // this.loadUser()
     this.route.data.subscribe(data => {
-      // tslint:disable-next-line: no-string-literal
+      // eslint-disable-next-line @typescript-eslint/dot-notation
       this.user = data['user'];
     });
 
@@ -44,7 +44,7 @@ export class MemberDetailComponent implements OnInit {
   }
 
   loadUser() {
-    // tslint:disable-next-line: no-string-literal
+    // eslint-disable-next-line @typescript-eslint/dot-notation
     this.userService.getUser(+this.route.snapshot.params['id']).subscribe((user: User) => {
       this.user = user;
     }, error => {
@@ -54,7 +54,7 @@ export class MemberDetailComponent implements OnInit {
 
   getImages() {
     const imageUrls =[];
-    // tslint:disable-next-line: prefer-for-of
+    // eslint-disable-next-line @typescript-eslint/prefer-for-of
     for (let i = 0; i < this.user.photos.length; i++) {
       imageUrls.push({
         small: this.user.photos[i].url,

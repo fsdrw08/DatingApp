@@ -14,6 +14,9 @@ import { UserService } from 'src/app/_services/user.service';
 export class MemberEditComponent implements OnInit {
   @ViewChild('editForm',{ static: true }) editForm: NgForm;
   user: User;
+  constructor(private route: ActivatedRoute, private alertify: AlertifyService,
+    private authService: AuthService, private userServices: UserService) { }
+
   @HostListener('window:beforeunload',['$event'])
   unloadNotification($event: any) {
     if (this.editForm.dirty) {
@@ -21,14 +24,11 @@ export class MemberEditComponent implements OnInit {
     }
   }
 
-  constructor(private route: ActivatedRoute, private alertify: AlertifyService,
-    private authService: AuthService, private userServices: UserService) { }
-
   ngOnInit(): void {
     this.route.data.subscribe(data => {
-      // tslint:disable-next-line: no-string-literal
+      // eslint-disable-next-line @typescript-eslint/dot-notation
       this.user = data['user'];
-    })
+    });
   }
 
   updateUser() {
@@ -37,7 +37,7 @@ export class MemberEditComponent implements OnInit {
       this.editForm.reset(this.user);
     }, error => {
       this.alertify.error(error);
-    })
+    });
 
   }
 }
