@@ -23,11 +23,20 @@
             Drop photo here
         </div>
 
-        Multiple
-        <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
-
-        Single
-        <input type="file" ng2FileSelect [uploader]="uploader" />
+        Multiple<br/>
+        <div>
+            <label for="MultipleUpload" class="btn btn-info">Select Images</label>
+            <input type="file" ng2FileSelect [uploader]="uploader" multiple id="MultipleUpload" style="display:none" /><br/>
+        </div>
+        Single<br/>
+        <div>
+            <label for="SingleUpload" class="btn btn-info">Select Image</label>
+            <input type="file" ng2FileSelect [uploader]="uploader" id="SingleUpload" style="visibility:hidden" /><br/>
+        </div>
+        <!--
+        <button class="btn btn-info" onclick="document.getElementById('SingleUpload').click()">Select file</button>
+        <input type="file" ng2FileSelect [uploader]="uploader" id="SingleUpload" style="display:none"/>
+        -->
     </div>
 
     <div class="col-md-9" style="margin-bottom: 40px" *ngIf="uploader?.queue?.length">

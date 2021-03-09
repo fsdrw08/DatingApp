@@ -58,9 +58,7 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
     FileUploadModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => {
-          return localStorage.getItem('token');
-        },
+        tokenGetter: () => localStorage.getItem('token'),
         allowedDomains: ['localhost:5000'],
         disallowedRoutes: ['localhost:5000/api/auth']
       }
