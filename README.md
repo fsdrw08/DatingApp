@@ -1,3 +1,6 @@
+# kill process which using port
+kill -9 $(lsof -t -i :5000)
+
 # dotnet user-secrets useage
 //only for first time
 dotnet user-secrets init

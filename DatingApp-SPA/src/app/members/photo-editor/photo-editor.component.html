@@ -2,8 +2,11 @@
     <div class="col-sm-2" *ngFor="let photo of photos">
         <img src="{{photo.url}}" class="img-thumbnail p-1" alt="">
         <div class="text-center">
-            <button type="button" class="btn btn-sm">Main</button>
-            <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></button>
+            <button type="button" class="btn btn-sm mr-1 mb-2" 
+            (click)="setMainPhoto(photo)"
+            [ngClass]="photo.isMain ? 'btn-secondary' : 'btn-success active'"
+            [disabled]="photo.isMain">Main</button>
+            <button type="button" class="btn btn-sm btn-danger mb-2"><i class="fa fa-trash-o"></i></button>
         </div>
     </div>
 </div>

@@ -10,7 +10,8 @@ namespace DatingApp.API.Data
         void Delete<T>(T entity) where T: class;
         Task<bool> SaveAll();
         Task<IEnumerable<User>> GetUsers();
-        Task<User> GetUser(int id);
-        Task<Photo> GetPhoto(int id);
+        Task<User> GetUser(int userId);
+        Task<Photo> GetPhoto(int photoId);
+        Task<Photo> GetMainPhotoForUser(int userId);
     }
 }
