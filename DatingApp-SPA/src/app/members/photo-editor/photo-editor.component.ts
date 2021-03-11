@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
+import { Observable } from 'rxjs';
+import { flatMap, mergeMap } from 'rxjs/operators';
 import { Photo } from 'src/app/_models/photo';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { AuthService } from 'src/app/_services/auth.service';
@@ -67,6 +69,14 @@ export class PhotoEditorComponent implements OnInit {
   }
 
   setMainPhoto(photo: Photo) {
+    //this.userServices.setMainPhoto(this.authService.decodedToken.nameid, photo.id).subscribe(
+    //  () => this.userServices.getUser(this.authService.decodedToken.nameid).subscribe(data => {
+    //      this.alertify.success('main set done');
+    //      this.photos  = data.photos;
+    //    }, error => {
+    //      this.alertify.error(error);
+    //    })
+    //  );
     this.userServices.setMainPhoto(this.authService.decodedToken.nameid, photo.id).subscribe(() => {
       this.currentMain = this.photos.filter(p =>p.isMain === true)[0];
       this.currentMain.isMain = false;
