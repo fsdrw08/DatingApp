@@ -9,12 +9,17 @@ import { AuthService } from '../_services/auth.service';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent {
+export class NavComponent implements OnInit{
   model: any = {};
   jwtHelper = new JwtHelperService();
+  photoUrl: string;
 
   constructor(public authService: AuthService, private alertifyService: AlertifyService,
     private router: Router) { }
+
+  ngOnInit(): void {
+    this.authService.currentPhotoUrl$.subscribe(photoUrl => this.photoUrl = photoUrl);
+  }
 
   login() {
     this.authService.loggin(this.model).subscribe(
