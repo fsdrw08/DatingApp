@@ -124,5 +124,37 @@ namespace DatingApp.API.Controllers
 
             return BadRequest("cannot set photo to main");
         }
+
+        [HttpDelete("{photoId}")]
+        public async Task<IActionResult> DeletePhoto(int userId, int photoId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+            
+            var user = await _repo.GetUser(userId);
+
+            if (!user.Photos.Any(p => p.Id == photoId))
+                return Unauthorized();
+
+            var photoFromRepo = await _repo.GetPhoto(photoId);
+
+            if (photoFromRepo.IsMain == true)
+                return BadRequest("Change your main photo to other first");
+
+            if (photoFromRepo.PublicId != null)
+            {
+                var deletionParams = new DeletionParams(photoFromRepo.PublicId);
+                var deletionResult = _cloudinary.Destroy(deletionParams);
+                if (deletionResult.Result == "ok")
+                    _repo.Delete(photoFromRepo);
+            }
+            if (photoFromRepo.PublicId == null)
+                _repo.Delete(photoFromRepo);
+
+            if (await _repo.SaveAll())
+                return Ok();
+
+            return BadRequest("failed to delete photo");
+        }
     }
 }
