@@ -24,8 +24,8 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(8)]),
-      confirmPassword: new FormControl('', Validators.required),
-    }, this.passwordConfrimMatcher);
+      confirmPassword: new FormControl('', Validators.required)},
+      this.passwordConfrimMatcher);
   }
 
   passwordConfrimMatcher(formGroup: FormGroup) {
