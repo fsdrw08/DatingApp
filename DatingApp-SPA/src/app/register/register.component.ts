@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { AlertifyService } from '../_services/alertify.service';
 import { AuthService } from '../_services/auth.service';
 
@@ -15,22 +15,53 @@ export class RegisterComponent implements OnInit {
 
   model: any = {};
 
-  constructor(private authService: AuthService, private alertifyService: AlertifyService) { }
+  constructor(private authService: AuthService, private alertifyService: AlertifyService,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.registerForm = new FormGroup({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(8)]),
-      confirmPassword: new FormControl('', Validators.required)},
-      this.passwordConfrimMatcher);
+    this.createRegisterForm();
   }
 
-  passwordConfrimMatcher(formGroup: FormGroup) {
-    return formGroup.get('password').value === formGroup.get('confirmPassword').value ? null : {mismatch : true};
+  createRegisterForm() {
+    this.registerForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', [Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(8),
+        this.passwordPatternValidator(/\d/, { needNumber: true }),
+        this.passwordPatternValidator(/[A-Z]/, { hasLowerCase: true }),
+        this.passwordPatternValidator(/[a-z]/, { hasUpperCase: true }),
+        this.passwordPatternValidator(/[-._!"`'#%&,:;<>=@{}~\$\(\)\*\+\/\\\?\[\]\^\|]+/, { hasSpecialCharacters: true })]],
+      confirmPassword: ['', [Validators.required, this.passwordConfrimMatcher('password')]]
+    } //, {
+      //validators: []
+    /*}*/);
   }
+
+  // passwordConfrimMatcher(formGroup: FormGroup) {
+  //   return formGroup.get('password').value === formGroup.get('confirmPassword').value ? null : {mismatch : true};
+  // }
+
+  passwordConfrimMatcher(matchTo: string): ValidatorFn {
+    return (control: AbstractControl) =>
+      control?.value === control?.parent?.controls[matchTo].value ? null : {mismatch: true};
+  }
+
+//↓ https://codinglatte.com/posts/angular/cool-password-validation-angular/
+  passwordPatternValidator(regex: RegExp, error: ValidationErrors): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} => {
+      if (!control.value) {
+        return null;
+      }
+      return regex.test(control.value) ? null : error;
+    };
+  }
+
+  passwordConfirmMatcher(control: AbstractControl) {
+    return control.get('password').value === control.get('confirmPassword').value ?
+      null : control.get('confirmPassword').setErrors({mismatch: true});
+  }
+//↑ https://codinglatte.com/posts/angular/cool-password-validation-angular/
 
   register() {
     // this.authService.register(this.model).subscribe(() => {
