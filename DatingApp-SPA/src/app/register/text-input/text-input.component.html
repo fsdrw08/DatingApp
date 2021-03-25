@@ -1,0 +1,32 @@
+<div class="form-group">
+    <input 
+      [class.is-invalid]="ngControl.touched && ngControl.invalid "
+      type={{type}}
+      class="form-control"
+      [formControl]="ngControl.control"
+      placeholder="{{lable}}">
+    <div *ngIf="ngControl.control.errors?.required" class="invalid-feedback">
+        please enter a {{lable}}
+    </div>
+    <div *ngIf="ngControl.control.errors?.minlength" class="invalid-feedback">
+        {{lable}} at least {{ngControl.control.errors.minlength['requiredLength']}}
+    </div>
+    <div *ngIf="ngControl.control.errors?.maxlength" class="invalid-feedback">
+        {{lable}} at largest {{ngControl.control.errors.maxlength['requiredLength']}}
+    </div>
+    <div *ngIf="ngControl.control.errors?.needNumber" class="invalid-feedback">
+        {{lable}} need number
+    </div>
+    <div *ngIf="ngControl.control.errors?.hasLowerCase" class="invalid-feedback">
+        {{lable}} need has LowerCase
+    </div>
+    <div *ngIf="ngControl.control.errors?.hasUpperCase" class="invalid-feedback">
+        {{lable}} need has UpperCase
+    </div>
+    <div *ngIf="ngControl.control.errors?.hasSpecialCharacters" class="invalid-feedback">
+        {{lable}} need has SpecialCharacters
+    </div>
+    <div *ngIf="ngControl.control.errors?.mismatch" class="invalid-feedback">
+        password did not match
+    </div>
+  </div>
