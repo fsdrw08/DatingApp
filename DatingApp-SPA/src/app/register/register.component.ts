@@ -24,25 +24,30 @@ export class RegisterComponent implements OnInit {
 
   createRegisterForm() {
     this.registerForm = this.formBuilder.group({
+      gender: ['male'],
       username: ['', Validators.required],
+      knowAs: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
+      city: ['', Validators.required],
+      country: ['', Validators.required],
       password: ['', [Validators.required,
         Validators.minLength(4),
         Validators.maxLength(8),
         this.passwordPatternValidator(/\d/, { needNumber: true }),
-        this.passwordPatternValidator(/[A-Z]/, { hasLowerCase: true }),
-        this.passwordPatternValidator(/[a-z]/, { hasUpperCase: true }),
+        this.passwordPatternValidator(/[A-Z]/, { hasUpperCase: true }),
+        this.passwordPatternValidator(/[a-z]/, { hasLowerCase: true }),
         this.passwordPatternValidator(/[-._!"`'#%&,:;<>=@{}~\$\(\)\*\+\/\\\?\[\]\^\|]+/, { hasSpecialCharacters: true })]],
-      confirmPassword: ['', [Validators.required, this.passwordConfrimMatcher('password')]]
-    } //, {
-      //validators: []
-    /*}*/);
+      confirmPassword: ['', [Validators.required /*, this.passwordConfirmMatcher('password')*/]]
+    } , {
+      validators: this.passwordConfirmMatcher2
+    });
   }
 
   // passwordConfrimMatcher(formGroup: FormGroup) {
   //   return formGroup.get('password').value === formGroup.get('confirmPassword').value ? null : {mismatch : true};
   // }
 
-  passwordConfrimMatcher(matchTo: string): ValidatorFn {
+  passwordConfirmMatcher(matchTo: string): ValidatorFn {
     return (control: AbstractControl) =>
       control?.value === control?.parent?.controls[matchTo].value ? null : {mismatch: true};
   }
@@ -57,7 +62,7 @@ export class RegisterComponent implements OnInit {
     };
   }
 
-  passwordConfirmMatcher(control: AbstractControl) {
+  passwordConfirmMatcher2(control: AbstractControl) {
     return control.get('password').value === control.get('confirmPassword').value ?
       null : control.get('confirmPassword').setErrors({mismatch: true});
   }
