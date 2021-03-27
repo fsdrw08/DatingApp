@@ -35,7 +35,7 @@
   </div>
   <app-text-input [formControl]='registerForm.controls["username"]' [lable]='"Username"'></app-text-input>
   <app-text-input [formControl]='registerForm.controls["knowAs"]' [lable]='"knowAs"'></app-text-input>
-  <app-text-input [formControl]='registerForm.controls["dateOfBirth"]' [lable]='"dateOfBirth"'></app-text-input>
+  <app-date-input [formControl]='registerForm.controls["dateOfBirth"]' [lable]='"dateOfBirth"' [maxDate]='maxDate'></app-date-input>
   <app-text-input [formControl]='registerForm.controls["city"]' [lable]='"city"'></app-text-input>
   <app-text-input [formControl]='registerForm.controls["country"]' [lable]='"country"'></app-text-input>
   <app-text-input [formControl]='registerForm.controls["password"]' [lable]='"Password"' [type]='"password"'></app-text-input>
