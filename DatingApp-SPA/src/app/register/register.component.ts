@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from '../_models/user';
 import { AlertifyService } from '../_services/alertify.service';
 import { AuthService } from '../_services/auth.service';
 
@@ -16,7 +18,7 @@ export class RegisterComponent implements OnInit {
   model: any = {};
 
   constructor(private authService: AuthService, private alertifyService: AlertifyService,
-    private formBuilder: FormBuilder) { }
+    private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.createRegisterForm();
@@ -71,12 +73,19 @@ export class RegisterComponent implements OnInit {
 //↑ https://codinglatte.com/posts/angular/cool-password-validation-angular/
 
   register() {
-    // this.authService.register(this.model).subscribe(() => {
-    //   this.alertifyService.success('registration success');
-    // }, error => {
-    //   this.alertifyService.error(error);
-    // });
-    console.log(this.registerForm.value);
+    if(this.registerForm.valid) {
+      const user: User = Object.assign({}, this.registerForm.value);
+      this.authService.register(user).subscribe(() => {
+        this.alertifyService.success('registion success');
+      }, error => {
+        this.alertifyService.error('registion failed');
+      }, () => {
+        this.authService.loggin(user).subscribe(() => {
+          this.router.navigate(['/members']);
+        });
+      });
+    }
+    //console.log(this.registerForm.value);
   }
 
   cancel() {
