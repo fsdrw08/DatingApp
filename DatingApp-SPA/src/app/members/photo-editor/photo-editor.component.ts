@@ -39,14 +39,16 @@ export class PhotoEditorComponent implements OnInit {
     };
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if (response) {
-        // new idea
-        this.userServices.getUser(this.authService.decodedToken.nameid).subscribe(data => {
-          this.alertify.success('photo uploaded');
-          this.photos = data.photos;
-        }, error => {
-          this.alertify.error(error);
-        });
-        /* orginal code
+        // new idea, with bug after user upload their first photo,
+        // it will not set it as main photo
+        // this.userServices.getUser(this.authService.decodedToken.nameid).subscribe(data => {
+        //   this.alertify.success('photo uploaded');
+        //   this.photos = data.photos;
+        // }, error => {
+        //   this.alertify.error(error);
+        // });
+
+        // orginal code
         const res: Photo = JSON.parse(response);
         const photo = {
           id: res.id,
@@ -56,7 +58,12 @@ export class PhotoEditorComponent implements OnInit {
           isMain: res.isMain
         };
         this.photos.push(photo);
-        */
+
+       if (photo.isMain) {
+        this.authService.changeMemberPhoto(photo.url);
+        this.authService.currentUser.photoUrl = photo.url;
+        localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
+       }
       }
     };
     this.hasBaseDropZoneOver = false;
@@ -98,7 +105,7 @@ export class PhotoEditorComponent implements OnInit {
           this.alertify.warning('delete done');
         },
         error => {
-          this.alertify.error('failed to delete');
+          this.alertify.error(error);
         }
       );
     });

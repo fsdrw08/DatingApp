@@ -138,8 +138,8 @@ namespace DatingApp.API.Controllers
 
             var photoFromRepo = await _repo.GetPhoto(photoId);
 
-            if (photoFromRepo.IsMain == true)
-                return BadRequest("Change your main photo to other first");
+            // if (photoFromRepo.IsMain == true)
+            //     return BadRequest("Change your main photo to other first");
 
             if (photoFromRepo.PublicId != null)
             {
