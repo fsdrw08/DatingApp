@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, AbstractControlOptions, FormBuilder,
+  FormControl, FormGroup, ValidationErrors,
+  ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../_models/user';
 import { AlertifyService } from '../_services/alertify.service';
@@ -44,7 +46,9 @@ export class RegisterComponent implements OnInit {
       confirmPassword: ['', [Validators.required /*, this.passwordConfirmMatcher('password')*/]]
     } , {
       validators: this.passwordConfirmMatcher2
-    });
+    } as AbstractControlOptions
+    //↑ https://stackoverflow.com/questions/65594627/angular-formbuilder-group-is-deprecated
+    );
   }
 
   // passwordConfrimMatcher(formGroup: FormGroup) {
